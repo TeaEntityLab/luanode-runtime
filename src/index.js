@@ -6,7 +6,7 @@ var diffJS = require("diff");
 var path = require('path');
 
 
-var lua = require("./lua.vm.js");
+var lua = require("../lua.vm.js/dist/lua.vm.js");
 var L = lua.Lua;
 var M = lua.module;
 var G = lua.global;
@@ -30,10 +30,10 @@ var loadDirectory = function(base_path, internal_path, callback) {
 		files.forEach(function(file){
 			c++;
 			//console.log(file);
-			fs.readFile(file, function(err, data) { 
-				if(err) { 
+			fs.readFile(file, function(err, data) {
+				if(err) {
 					if(callback){
-						callback(err); return; 
+						callback(err); return;
 					} else {
 						throw err;
 					}
@@ -59,7 +59,7 @@ var loadDirectory = function(base_path, internal_path, callback) {
 					}
 				} catch (err) {
 					if(callback){
-						callback(err); return; 
+						callback(err); return;
 					} else {
 						throw err;
 					}
@@ -70,11 +70,11 @@ var loadDirectory = function(base_path, internal_path, callback) {
 };
 
 var loadFile = function(base_path, internal_path, callback) {
-	fs.readFile(base_path, function(err, data) { 
-		
+	fs.readFile(base_path, function(err, data) {
+
 		if(err) {
 			if(callback){
-				callback(err); return; 
+				callback(err); return;
 			} else {
 				throw err;
 			}
@@ -98,7 +98,7 @@ var loadFile = function(base_path, internal_path, callback) {
 			}
 		} catch(err) {
 			if(callback){
-				callback(err); return; 
+				callback(err); return;
 			} else {
 				throw err;
 			}
@@ -114,7 +114,7 @@ var runScript = function(lua_script, callback) {
 		L.execute(lua_script);
 	} catch(err) {
 		if(callback){
-			callback(err); return; 
+			callback(err); return;
 		} else {
 			throw err;
 		}
@@ -131,7 +131,7 @@ var runLoadedScript = function(internal_path, callback) {
 		L.execute("dofile('"+internal_path+"')");
 	} catch(err) {
 		if(callback){
-			callback(err); return; 
+			callback(err); return;
 		} else {
 			throw err;
 		}
@@ -149,7 +149,7 @@ var addGlobal = function(name, global_object) {
 	G[name] = global_object;
 }
 
-//Gets an object in the Lua Accessible scope 
+//Gets an object in the Lua Accessible scope
 //(this can include variables included from )
 var getGlobal = function(name) {
 	return G[name];
